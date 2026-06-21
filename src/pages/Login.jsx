@@ -73,6 +73,10 @@ export default function Login() {
 
       <div className="login-container">
         <div className="login-card">
+          <div className="login-privacy-badge">
+            Your Privacy Is My Priority
+          </div>
+
           <div className="login-header">
             <span className="login-logo">📒</span>
             <h1 className="login-title">
@@ -165,20 +169,12 @@ export default function Login() {
               {isRegister ? 'Sign In' : 'Register'}
             </button>
           </div>
-
-          <div className="login-features">
-            <span className="login-feature">
-              <span className="login-feature-icon">🔒</span> Secure
-            </span>
-            <span className="login-feature">
-              <span className="login-feature-icon">💾</span> Persistent
-            </span>
-            <span className="login-feature">
-              <span className="login-feature-icon">🎨</span> Beautiful
-            </span>
-          </div>
         </div>
       </div>
+
+      <footer className="login-footer">
+        Built by Sagar Kumar Singh
+      </footer>
     </div>
   );
 }

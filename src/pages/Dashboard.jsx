@@ -504,22 +504,24 @@ export default function Dashboard() {
             />
           </div>
 
-          <div className="dashboard-actions">
-            <button
-              id="add-note-btn"
-              className="btn btn-primary"
-              onClick={() => { setEditingNote(null); setShowNoteEditor(true); }}
-            >
-              📝 Write Note
-            </button>
-            <button
-              id="add-image-btn"
-              className="btn btn-secondary"
-              onClick={() => setShowImageUploader(true)}
-            >
-              🖼️ Add Image
-            </button>
-          </div>
+          {notes.length > 0 && (
+            <div className="dashboard-actions">
+              <button
+                id="add-note-btn"
+                className="btn btn-primary"
+                onClick={() => { setEditingNote(null); setShowNoteEditor(true); }}
+              >
+                📝 Write Note
+              </button>
+              <button
+                id="add-image-btn"
+                className="btn btn-secondary"
+                onClick={() => setShowImageUploader(true)}
+              >
+                🖼️ Add Image
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Notes Grid */}
@@ -951,6 +953,10 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      <footer className="dashboard-footer">
+        Built by Sagar Kumar Singh
+      </footer>
     </div>
   );
 }

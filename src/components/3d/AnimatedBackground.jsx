@@ -145,7 +145,7 @@ export default function AnimatedBackground() {
       zIndex: 0,
       background: theme === 'dark'
         ? 'radial-gradient(ellipse at 50% 50%, #0f0f2e 0%, #050510 100%)'
-        : 'radial-gradient(ellipse at 50% 50%, #e8eaf6 0%, #c5cae9 100%)',
+        : 'radial-gradient(ellipse at 50% 50%, #fafafc 0%, #d8dbe9 100%)',
     }}>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
