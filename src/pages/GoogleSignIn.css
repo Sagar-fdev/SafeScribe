@@ -1,0 +1,211 @@
+/* Google Identity Services styling mock */
+.gsi-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f4f9;
+  font-family: 'Roboto', 'Google Sans', system-ui, sans-serif;
+  color: #1f1f1f;
+  margin: 0;
+  padding: 16px;
+}
+
+.gsi-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 40px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.gsi-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.gsi-title {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 8px 0;
+  color: #1f1f1f;
+}
+
+.gsi-subtitle {
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 24px 0;
+  color: #444746;
+}
+
+.gsi-accounts-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.gsi-account-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e3e3e3;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.gsi-account-row:first-child {
+  border-top: 1px solid #e3e3e3;
+}
+
+.gsi-account-row:hover {
+  background-color: #f7f9fc;
+}
+
+.gsi-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.gsi-account-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gsi-account-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f1f1f;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.gsi-account-email {
+  font-size: 12px;
+  color: #444746;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.gsi-another-account-btn {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #0b57d0;
+  font-weight: 500;
+  gap: 12px;
+  transition: background-color 0.2s;
+}
+
+.gsi-another-account-btn:hover {
+  background-color: #f7f9fc;
+}
+
+.gsi-another-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f0f4f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.gsi-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.gsi-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #747775;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.gsi-input:focus {
+  border-color: #0b57d0;
+  border-width: 2px;
+  padding: 13px 15px; /* prevent layout shift */
+}
+
+.gsi-form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.gsi-btn-primary {
+  background-color: #0b57d0;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.gsi-btn-primary:hover {
+  background-color: #0842a0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.gsi-btn-secondary {
+  background-color: transparent;
+  color: #0b57d0;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.gsi-btn-secondary:hover {
+  background-color: rgba(11, 87, 208, 0.08);
+}
+
+.gsi-footer {
+  font-size: 12px;
+  line-height: 16px;
+  color: #444746;
+  text-align: left;
+}
+
+.animate-fade {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

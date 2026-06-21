@@ -1,0 +1,65 @@
+.pin-modal .modal {
+  max-width: 360px;
+  text-align: center;
+}
+
+.pin-modal-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+}
+
+.pin-input-group {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+
+.pin-digit {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.pin-digit:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.pin-digit.filled {
+  border-color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.pin-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-md);
+  min-height: 20px;
+}
+
+.pin-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.pin-modal.shake .pin-input-group {
+  animation: shake 0.5s ease-in-out;
+}
+
+.pin-lock-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
