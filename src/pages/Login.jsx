@@ -171,10 +171,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-
-      <footer className="login-footer">
-        Built by Sagar Kumar Singh
-      </footer>
     </div>
   );
 }
