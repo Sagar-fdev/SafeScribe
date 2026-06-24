@@ -6,6 +6,8 @@ export default function PinModal({ mode = 'verify', onSubmit, onClose, onForgotP
   const [pin, setPin] = useState(Array(expectedLength).fill(''));
   const [error, setError] = useState('');
   const [shaking, setShaking] = useState(false);
+  const [submitCount, setSubmitCount] = useState(0);
+  const lastErrorRef = useRef(externalError);
   const inputRefs = useRef([]);
 
   useEffect(() => {
@@ -16,11 +18,13 @@ export default function PinModal({ mode = 'verify', onSubmit, onClose, onForgotP
   }, [pinLength]);
 
   useEffect(() => {
-    if (externalError) {
+    const errorChanged = externalError !== lastErrorRef.current;
+    if (externalError && (errorChanged || submitCount > 0)) {
       setError(externalError);
       triggerShake();
     }
-  }, [externalError]);
+    lastErrorRef.current = externalError;
+  }, [externalError, submitCount]);
 
   const triggerShake = () => {
     setShaking(true);
@@ -45,6 +49,7 @@ export default function PinModal({ mode = 'verify', onSubmit, onClose, onForgotP
     if (value && index === pinLength - 1) {
       const fullPin = newPin.join('');
       if (fullPin.length === pinLength) {
+        setSubmitCount(c => c + 1);
         onSubmit(fullPin);
       }
     }
@@ -65,6 +70,7 @@ export default function PinModal({ mode = 'verify', onSubmit, onClose, onForgotP
       setError(`Please enter a ${pinLength}-digit PIN`);
       return;
     }
+    setSubmitCount(c => c + 1);
     onSubmit(fullPin);
   };
 

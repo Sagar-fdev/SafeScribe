@@ -1,0 +1,101 @@
+.image-loader-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+/* Styling when wrapper has .note-card-image */
+.image-loader-wrapper.note-card-image {
+  width: 100%;
+  height: 180px;
+  min-height: 180px;
+}
+.image-loader-wrapper.note-card-image .loaded-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styling when wrapper has .note-detail-image */
+.image-loader-wrapper.note-detail-image {
+  width: 100%;
+  max-height: 500px;
+  min-height: 250px;
+  border-radius: var(--radius-md);
+}
+.image-loader-wrapper.note-detail-image .loaded-image {
+  object-fit: contain;
+  max-height: 500px;
+  width: 100%;
+  height: auto;
+}
+
+.image-loading-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  backdrop-filter: blur(4px);
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  z-index: 1;
+}
+
+.image-loading-spinner-small {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.image-loading-percentage {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.image-loading-bar {
+  width: 60%;
+  max-width: 180px;
+  height: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.image-loading-bar-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.1s ease-out;
+}
+
+.loaded-image {
+  display: block;
+  transition: opacity var(--transition-base) ease-out, filter var(--transition-base) ease-out;
+}
+
+.loaded-image.hidden {
+  opacity: 0;
+  filter: blur(10px);
+  position: absolute;
+}
+
+.loaded-image.visible {
+  opacity: 1;
+  filter: blur(0);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

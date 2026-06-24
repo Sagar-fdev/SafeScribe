@@ -171,6 +171,11 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+      <footer className="login-footer">
+        <span>SafeScribe v1.0</span>
+        <span>Created by Sagar Kumar Sungh</span>
+      </footer>
     </div>
   );
 }

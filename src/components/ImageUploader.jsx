@@ -18,6 +18,9 @@ export default function ImageUploader({ onClose }) {
   const [pinError, setPinError] = useState('');
   const [recoveryCode, setRecoveryCode] = useState(null);
   const [pendingPin, setPendingPin] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [readProgress, setReadProgress] = useState(0);
+  const [isSaving, setIsSaving] = useState(false);
   const fileInputRef = useRef();
 
   const processFile = (file) => {
@@ -34,6 +37,18 @@ export default function ImageUploader({ onClose }) {
     }
 
     const reader = new FileReader();
+    reader.onloadstart = () => {
+      setIsLoading(true);
+      setReadProgress(0);
+    };
+
+    reader.onprogress = (e) => {
+      if (e.lengthComputable) {
+        const percent = Math.round((e.loaded / e.total) * 100);
+        setReadProgress(percent);
+      }
+    };
+
     reader.onload = (e) => {
       setImageData({
         data: e.target.result,
@@ -42,6 +57,11 @@ export default function ImageUploader({ onClose }) {
         type: file.type,
       });
     };
+
+    reader.onloadend = () => {
+      setIsLoading(false);
+    };
+
     reader.readAsDataURL(file);
   };
 
@@ -86,17 +106,25 @@ export default function ImageUploader({ onClose }) {
     saveImage(null);
   };
 
-  const saveImage = (pin, recCode) => {
-    addNote({
-      type: 'image',
-      decryptedTitle: title.trim() || imageData.name || 'Untitled Image',
-      decryptedContent: imageData.data,
-      imageName: imageData.name,
-      imageSize: imageData.size,
-      isProtected,
-      protectionPin: pin,
-    }, pin, recCode);
-    onClose();
+  const saveImage = async (pin, recCode) => {
+    setIsSaving(true);
+    setError('');
+    try {
+      await addNote({
+        type: 'image',
+        decryptedTitle: title.trim() || imageData.name || 'Untitled Image',
+        decryptedContent: imageData.data,
+        imageName: imageData.name,
+        imageSize: imageData.size,
+        isProtected,
+        protectionPin: pin,
+      }, pin, recCode);
+      onClose();
+    } catch (err) {
+      setError(err.message || 'Failed to save image. Please try again.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handlePinSubmit = (pin) => {
@@ -138,14 +166,37 @@ export default function ImageUploader({ onClose }) {
     <>
       <div className="image-uploader-overlay" onClick={onClose}>
         <div className="image-uploader" onClick={e => e.stopPropagation()}>
+          {isSaving && (
+            <div className="image-uploader-saving-overlay">
+              <div className="image-uploader-saving-spinner"></div>
+              <p className="image-uploader-saving-text">Encrypting & Saving Image...</p>
+              <p className="image-uploader-saving-subtext">This may take a moment for larger images</p>
+            </div>
+          )}
           <div className="image-uploader-header">
             <h2 className="image-uploader-title">🖼️ Add Image</h2>
-            <button className="image-uploader-close" onClick={onClose} aria-label="Close">
+            <button 
+              className="image-uploader-close" 
+              onClick={onClose} 
+              aria-label="Close"
+              disabled={isSaving}
+            >
               ✕
             </button>
           </div>
 
-          {!imageData ? (
+          {isLoading ? (
+            <div className="image-uploader-loading">
+              <div className="image-uploader-loading-spinner"></div>
+              <p className="image-uploader-loading-text">Loading Image... {readProgress}%</p>
+              <div className="image-uploader-loading-bar">
+                <div 
+                  className="image-uploader-loading-bar-fill" 
+                  style={{ width: `${readProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          ) : !imageData ? (
             <div
               className={`drop-zone ${dragOver ? 'drag-over' : ''}`}
               onDrop={handleDrop}
@@ -158,6 +209,7 @@ export default function ImageUploader({ onClose }) {
                 accept=".jpg,.jpeg,.png,.webp"
                 onChange={handleFileChange}
                 id="image-file-input"
+                disabled={isSaving}
               />
               <span className="drop-zone-icon">📸</span>
               <p className="drop-zone-text">Drop image here or click to browse</p>
@@ -170,7 +222,12 @@ export default function ImageUploader({ onClose }) {
                 alt="Preview"
                 className="image-preview"
               />
-              <button className="image-preview-remove" onClick={removeImage} aria-label="Remove image">
+              <button 
+                className="image-preview-remove" 
+                onClick={removeImage} 
+                aria-label="Remove image"
+                disabled={isSaving}
+              >
                 ✕
               </button>
             </div>
@@ -193,6 +250,7 @@ export default function ImageUploader({ onClose }) {
                   placeholder="Give your image a title..."
                   value={title}
                   onChange={e => setTitle(e.target.value)}
+                  disabled={isSaving}
                 />
               </div>
 
@@ -211,18 +269,31 @@ export default function ImageUploader({ onClose }) {
                     id="image-protection"
                     type="checkbox"
                     checked={isProtected}
-                    onChange={() => setIsProtected(!isProtected)}
+                    onChange={() => !isSaving && setIsProtected(!isProtected)}
+                    disabled={isSaving}
                   />
-                  <span className="toggle-slider" onClick={() => setIsProtected(!isProtected)}></span>
+                  <span 
+                    className="toggle-slider" 
+                    onClick={() => !isSaving && setIsProtected(!isProtected)}
+                  ></span>
                 </div>
               </div>
 
               <div className="image-uploader-actions">
-                <button type="button" className="btn btn-secondary" onClick={onClose}>
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  onClick={onClose}
+                  disabled={isSaving}
+                >
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-primary">
-                  Save Image
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={isSaving}
+                >
+                  {isSaving ? 'Saving...' : 'Save Image'}
                 </button>
               </div>
             </form>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from './AuthContext';
 import { supabase } from '../lib/supabase';
 import { encryptNote, decryptNote, hashPin, comparePin, encryptPinWithRecoveryCode, decryptPinWithRecoveryCode } from '../lib/crypto';
@@ -12,6 +12,7 @@ export function NotesProvider({ children }) {
   const [unlockedPin, setUnlockedPin] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const decryptedCacheRef = useRef({});
 
   const formatNote = useCallback((note) => {
     if (!note) return null;
@@ -36,6 +37,7 @@ export function NotesProvider({ children }) {
     setUnlockedPin(null);
     setProfile(null);
     setLoadingProfile(true);
+    decryptedCacheRef.current = {};
   }, [user]);
 
   const fetchProfile = useCallback(async () => {
@@ -345,6 +347,11 @@ export function NotesProvider({ children }) {
 
     return await Promise.all(
       list.map(async (note) => {
+        const cacheKey = `${note.id}_${note.updatedAt || note.createdAt || 'initial'}_${note.isProtected ? (pin || 'locked') : 'unprotected'}`;
+        if (decryptedCacheRef.current[cacheKey]) {
+          return decryptedCacheRef.current[cacheKey];
+        }
+
         let decryptedTitle = '';
         let decryptedContent = '';
 
@@ -407,11 +414,17 @@ export function NotesProvider({ children }) {
           }
         }
 
-        return {
+        const decryptedNoteObj = {
           ...note,
           decryptedTitle,
           decryptedContent,
         };
+
+        if (decryptedTitle !== 'Error Decrypting') {
+          decryptedCacheRef.current[cacheKey] = decryptedNoteObj;
+        }
+
+        return decryptedNoteObj;
       })
     );
   }, []);

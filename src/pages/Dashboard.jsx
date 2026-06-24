@@ -6,6 +6,7 @@ import ThemeToggle from '../components/ThemeToggle';
 import NoteEditor from '../components/NoteEditor';
 import ImageUploader from '../components/ImageUploader';
 import PinModal from '../components/PinModal';
+import ImageWithLoader from '../components/ImageWithLoader';
 import { comparePin, decryptPinWithRecoveryCode, generateRecoveryCode, decryptNote } from '../lib/crypto';
 import './Dashboard.css';
 
@@ -544,11 +545,10 @@ export default function Dashboard() {
 
                 {/* Image preview */}
                 {note.type === 'image' && (!note.isProtected || isSessionUnlocked) && (
-                  <img
+                  <ImageWithLoader
                     src={getNoteContent(note)}
                     alt={note.decryptedTitle}
                     className="note-card-image"
-                    loading="lazy"
                   />
                 )}
 
@@ -673,7 +673,7 @@ export default function Dashboard() {
               {viewingNote.type === 'text' ? (
                 <p className="note-detail-content">{getNoteContent(viewingNote)}</p>
               ) : (
-                <img
+                <ImageWithLoader
                   src={getNoteContent(viewingNote)}
                   alt={viewingNote.decryptedTitle}
                   className="note-detail-image"
@@ -955,7 +955,8 @@ export default function Dashboard() {
       )}
 
       <footer className="dashboard-footer">
-        Built by Sagar Kumar Singh
+        <span>SafeScribe v1.0</span>
+        <span>Created by Sagar Kumar Sungh</span>
       </footer>
     </div>
   );

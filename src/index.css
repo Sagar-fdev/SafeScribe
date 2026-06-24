@@ -26,7 +26,7 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.3);
+  --shadow-glow: 0 0 30px rgba(249, 115, 22, 0.35);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -45,26 +45,26 @@
 
 /* ===== Light Theme ===== */
 [data-theme='light'] {
-  --bg-primary: #f5f6fa;
+  --bg-primary: #fdfbf7;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #ebedf3;
+  --bg-tertiary: #fbf5e6;
   --bg-glass: rgba(255, 255, 255, 0.72);
   --bg-glass-strong: rgba(255, 255, 255, 0.88);
-  --bg-overlay: rgba(15, 15, 35, 0.4);
+  --bg-overlay: rgba(62, 26, 6, 0.4);
 
-  --text-primary: #1e1e38;
-  --text-secondary: #52527a;
-  --text-tertiary: #8b8ba8;
+  --text-primary: #3c1b06;
+  --text-secondary: #7c4d30;
+  --text-tertiary: #a8826a;
   --text-inverse: #ffffff;
 
-  --accent-primary: #5a67d8;
-  --accent-secondary: #7048a3;
-  --accent-gradient: linear-gradient(135deg, #5a67d8 0%, #7048a3 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #4c51bf 0%, #5b378c 100%);
-  --accent-soft: rgba(90, 103, 216, 0.08);
+  --accent-primary: #ff843d;
+  --accent-secondary: #ffa066;
+  --accent-gradient: linear-gradient(135deg, #ffa066 0%, #ff7024 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #ffb380 0%, #ff5d0d 100%);
+  --accent-soft: rgba(255, 132, 61, 0.08);
 
-  --border-color: rgba(0, 0, 0, 0.06);
-  --border-color-strong: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(255, 132, 61, 0.08);
+  --border-color-strong: rgba(255, 132, 61, 0.16);
 
   --danger: #ef4444;
   --danger-soft: rgba(239, 68, 68, 0.08);
@@ -75,42 +75,51 @@
 
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: rgba(255, 255, 255, 0.5);
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --card-shadow: 0 4px 20px rgba(255, 132, 61, 0.05);
 
-  --input-bg: rgba(245, 246, 250, 0.85);
-  --input-border: rgba(0, 0, 0, 0.06);
-  --input-focus-border: #5a67d8;
+  --input-bg: rgba(253, 251, 247, 0.85);
+  --input-border: rgba(255, 132, 61, 0.08);
+  --input-focus-border: #ff843d;
 
-  --scrollbar-track: #ebedf3;
-  --scrollbar-thumb: #ced1db;
+  --scrollbar-track: #fbf5e6;
+  --scrollbar-thumb: #eadace;
+
+  /* Login Card specific styling */
+  --login-card-bg: linear-gradient(135deg, rgba(255, 252, 248, 0.88) 0%, rgba(255, 238, 219, 0.88) 100%);
+  --login-card-border: rgba(255, 132, 61, 0.2);
+  --login-card-shadow: 0 8px 32px rgba(255, 132, 61, 0.08), 0 16px 48px rgba(0, 0, 0, 0.2);
+
+  /* Button shadows */
+  --btn-shadow: 0 4px 16px rgba(255, 112, 36, 0.25);
+  --btn-shadow-hover: 0 6px 24px rgba(255, 112, 36, 0.35);
 
   /* 3D Scene Colors */
-  --scene-bg: #f0f1f4;
-  --scene-shape-1: #5a67d8;
-  --scene-shape-2: #7048a3;
-  --scene-shape-3: #e29bf4;
-  --scene-particle: #5a67d8;
+  --scene-bg: #fdfbf7;
+  --scene-shape-1: #ff843d;
+  --scene-shape-2: #ffa066;
+  --scene-shape-3: #ffc4a3;
+  --scene-particle: #ffa066;
 }
 
 /* ===== Dark Theme ===== */
 [data-theme='dark'] {
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #12122a;
-  --bg-tertiary: #1a1a3e;
-  --bg-glass: rgba(18, 18, 42, 0.75);
-  --bg-glass-strong: rgba(18, 18, 42, 0.9);
+  --bg-primary: #0e0602;
+  --bg-secondary: #1a0a03;
+  --bg-tertiary: #291307;
+  --bg-glass: rgba(26, 10, 3, 0.75);
+  --bg-glass-strong: rgba(26, 10, 3, 0.9);
   --bg-overlay: rgba(0, 0, 0, 0.65);
 
-  --text-primary: #e8e8f0;
-  --text-secondary: #a0a0c0;
-  --text-tertiary: #6a6a8a;
-  --text-inverse: #0a0a1a;
+  --text-primary: #fbeee6;
+  --text-secondary: #d6beb2;
+  --text-tertiary: #a58d81;
+  --text-inverse: #0e0602;
 
-  --accent-primary: #818cf8;
-  --accent-secondary: #a78bfa;
-  --accent-gradient: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  --accent-soft: rgba(129, 140, 248, 0.12);
+  --accent-primary: #ffaa66;
+  --accent-secondary: #ffc499;
+  --accent-gradient: linear-gradient(135deg, #ffc499 0%, #ff8833 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #ffd1b3 0%, #ff7711 100%);
+  --accent-soft: rgba(255, 170, 102, 0.15);
 
   --border-color: rgba(255, 255, 255, 0.06);
   --border-color-strong: rgba(255, 255, 255, 0.12);
@@ -122,23 +131,32 @@
   --warning: #fbbf24;
   --warning-soft: rgba(251, 191, 36, 0.12);
 
-  --card-bg: rgba(26, 26, 62, 0.6);
+  --card-bg: rgba(26, 10, 3, 0.6);
   --card-border: rgba(255, 255, 255, 0.06);
-  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 
-  --input-bg: rgba(26, 26, 62, 0.6);
+  --input-bg: rgba(26, 10, 3, 0.6);
   --input-border: rgba(255, 255, 255, 0.08);
-  --input-focus-border: #818cf8;
+  --input-focus-border: #ffaa66;
 
-  --scrollbar-track: #12122a;
-  --scrollbar-thumb: #2a2a5a;
+  --scrollbar-track: #1a0a03;
+  --scrollbar-thumb: #3f1e0d;
+
+  /* Login Card specific styling */
+  --login-card-bg: linear-gradient(135deg, rgba(45, 20, 6, 0.85) 0%, rgba(20, 8, 2, 0.9) 100%);
+  --login-card-border: rgba(255, 170, 102, 0.15);
+  --login-card-shadow: 0 8px 32px rgba(255, 170, 102, 0.08), 0 16px 48px rgba(0, 0, 0, 0.35);
+
+  /* Button shadows */
+  --btn-shadow: 0 4px 16px rgba(255, 136, 51, 0.3);
+  --btn-shadow-hover: 0 6px 24px rgba(255, 136, 51, 0.45);
 
   /* 3D Scene Colors */
-  --scene-bg: #050510;
-  --scene-shape-1: #818cf8;
-  --scene-shape-2: #a78bfa;
-  --scene-shape-3: #c084fc;
-  --scene-particle: #818cf8;
+  --scene-bg: #0e0602;
+  --scene-shape-1: #ffaa66;
+  --scene-shape-2: #ffc499;
+  --scene-shape-3: #ffd0b8;
+  --scene-particle: #ffaa66;
 }
 
 /* ===== Global Reset & Base ===== */
@@ -335,12 +353,12 @@ body {
 .btn-primary {
   background: var(--accent-gradient);
   color: white;
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--btn-shadow);
 }
 
 .btn-primary:hover {
   background: var(--accent-gradient-hover);
-  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--btn-shadow-hover);
   transform: translateY(-1px);
 }
 

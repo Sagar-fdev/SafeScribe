@@ -16,13 +16,13 @@
 }
 
 .login-card {
-  background: var(--bg-glass-strong);
+  background: var(--login-card-bg, var(--bg-glass-strong));
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--login-card-border, var(--border-color));
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--login-card-shadow, var(--shadow-xl));
 }
 
 .login-header {
@@ -216,9 +216,13 @@
 
 .login-footer {
   position: absolute;
-  bottom: var(--space-lg);
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: var(--z-base);
   font-size: 0.8rem;
   color: var(--text-tertiary);
@@ -226,12 +230,20 @@
   letter-spacing: 0.03em;
   opacity: 0.85;
   transition: opacity var(--transition-base);
-  text-align: center;
 }
 
 .login-footer:hover {
   opacity: 1;
   color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+  .login-footer {
+    flex-direction: column;
+    gap: var(--space-xs);
+    text-align: center;
+    padding-bottom: var(--space-sm);
+  }
 }
 
 
